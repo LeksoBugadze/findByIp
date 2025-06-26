@@ -1,10 +1,10 @@
-package com.fbIP.findByIp;
+package com.findbyip.back_end;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class FindByIpApplicationTests {
+class BackEndApplicationTests {
 
 	@Test
 	void contextLoads() {

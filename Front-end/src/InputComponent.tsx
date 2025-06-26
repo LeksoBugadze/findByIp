@@ -25,7 +25,7 @@ function InputComponent(){
                 headers:{
                     "Content-type":"application/json"
                 },body:JSON.stringify({
-                    input:inputValue
+                    req:inputValue
                 })
             });
 
@@ -35,11 +35,11 @@ function InputComponent(){
                 return alert(data.error||'Something went wrong');
             }
 
-
+            console.log(data.location);
 
 
         }catch(error){
-            console.log(error);
+            alert(error);
 
         }finally{
             setLoading(false);
@@ -62,7 +62,7 @@ function InputComponent(){
                     :'hover:bg-redish-700 transition-bg duration-250 cursor-pointer'}
                     text-md p-1 md:text-lg md:p-2 lg:text-xl   text-redish-100 bg-darkBlueish-900 border-l-2 border-redish-700
                     `}
-            >Find Location</button>
+            >{loading?'Searching...':'Find Location'}</button>
         </div>
     )
 
