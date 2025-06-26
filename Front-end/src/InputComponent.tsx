@@ -2,7 +2,7 @@ import { useState } from "react";
 
 function InputComponent(){
     const url:String='http://localhost:8080';
-    
+
     const [inputValue,setInputValue]=useState('');
     const [loading,setLoading]=useState(false);
 
@@ -20,8 +20,15 @@ function InputComponent(){
         try{
             setLoading(true);
 
+            const response=await fetch(`${url}/`,{
+                method:'POST',
+                headers:{
+                    "Content-type":"application/json"
+                },body:JSON.stringify({
+                    input:inputValue
+                })
+            });
 
-            const response=await fetch(`${url}?ip=${inputValue}`);
             const data:locationRes=await response.json();
 
             if(!data||data.error){
@@ -40,10 +47,10 @@ function InputComponent(){
     }
 
     return(
-        <div className="flex flex-col gap-5">
+        <div className="ring-2 ring-redish-700 flex rounded-md overflow-hidden">
             <input
-                className="ring-2 ring-redish-700 text-xl p-2 text-redish-100 rounded-md"
-                placeholder="Input IP Address"
+                className="text-md p-1 md:text-lg md:p-2 lg:text-xl text-redish-100"
+                placeholder="Input IP/Email/Domain"
                 type="text"
                 value={inputValue}
                 onChange={(e)=>{setInputValue(e.target.value)}}
@@ -53,7 +60,7 @@ function InputComponent(){
                 className={`
                     ${loading?"cursor-not-allowed opacity-50"
                     :'hover:bg-redish-700 transition-bg duration-250 cursor-pointer'}
-                    ring-2 text-xl p-2 ring-redish-700 text-redish-100 rounded-md
+                    text-md p-1 md:text-lg md:p-2 lg:text-xl   text-redish-100 bg-darkBlueish-900 border-l-2 border-redish-700
                     `}
             >Find Location</button>
         </div>
