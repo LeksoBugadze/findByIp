@@ -4,6 +4,17 @@ body{
   background-color: #09122C
 }
 
+.fade-in-out {
+  animation: fadeInOut 2s ease-in-out forwards;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateY(-20px); }
+  10% { opacity: 1; transform: translateY(0); }
+  90% { opacity: 1; transform: translateY(0); }
+  100% {  transform: translateY(-20px); }
+}
+
 @theme{
   --color-darkBlueish-900:oklch(0.1911 0.0541 266.84);
   --color-redish-700:oklch(0.4244 0.1358 7.24);

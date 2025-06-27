@@ -9,9 +9,11 @@ type Props = {
     setLat: Dispatch<SetStateAction<number>>;
     setLng: Dispatch<SetStateAction<number>>;
     setSent:Dispatch<SetStateAction<boolean>>;
+    setError:Dispatch<SetStateAction<boolean>>;
+    setErrorMessage:Dispatch<SetStateAction<string>>;
 };
 
-function InputComponent({setCountry,setCity,setTimeZone,setPostalCode,setLat,setLng,setSent}:Props){
+function InputComponent({setErrorMessage,setError,setCountry,setCity,setTimeZone,setPostalCode,setLat,setLng,setSent}:Props){
     const url:string='http://localhost:8080';
 
     const [inputValue,setInputValue]=useState('');
@@ -29,7 +31,9 @@ function InputComponent({setCountry,setCity,setTimeZone,setPostalCode,setLat,set
 
     async function handleClick(){
         if(!inputValue.trim()){
-            return alert('Input field is empty');
+            setErrorMessage('Input field is empty');
+            setError(true);
+            return;
         }
 
         try{
@@ -47,7 +51,9 @@ function InputComponent({setCountry,setCity,setTimeZone,setPostalCode,setLat,set
             const data:locationRes=await response.json();
 
             if(!data||data.error){
-                return alert(data.error||'Something went wrong');
+                setErrorMessage(data.error||'Something went wrong');
+                setError(true);
+                return; 
             }
 
            
@@ -61,8 +67,8 @@ function InputComponent({setCountry,setCity,setTimeZone,setPostalCode,setLat,set
             setSent(true);
 
         }catch(error){
-            alert(error);
-
+            setErrorMessage('Something went wrong');
+            setError(true);
         }finally{
             setLoading(false);
         }
