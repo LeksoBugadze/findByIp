@@ -1,15 +1,30 @@
 import { useState } from "react";
+import type { Dispatch, SetStateAction } from "react";
 
-function InputComponent(){
-    const url:String='http://localhost:8080';
+type Props = {
+    setCountry: Dispatch<SetStateAction<string|undefined>>;
+    setCity: Dispatch<SetStateAction<string|undefined>>;
+    setTimeZone: Dispatch<SetStateAction<string|undefined>>;
+    setPostalCode: Dispatch<SetStateAction<string|undefined>>;
+    setLat: Dispatch<SetStateAction<number>>;
+    setLng: Dispatch<SetStateAction<number>>;
+    setSent:Dispatch<SetStateAction<boolean>>;
+};
+
+function InputComponent({setCountry,setCity,setTimeZone,setPostalCode,setLat,setLng,setSent}:Props){
+    const url:string='http://localhost:8080';
 
     const [inputValue,setInputValue]=useState('');
     const [loading,setLoading]=useState(false);
 
-
     type locationRes={
-        error?:String;
-        location?:String;
+        error?:string;
+        Country?:string;
+        City?:string;
+        TimeZone?:string;
+        PostalCode?:string;
+        Lat?:number;
+        Lng?:number;
     }
 
     async function handleClick(){
@@ -35,8 +50,15 @@ function InputComponent(){
                 return alert(data.error||'Something went wrong');
             }
 
-            console.log(data.location);
-
+           
+            setCountry(data.Country);
+            setCountry(data.Country);
+            setCity(data.City);
+            setTimeZone(data.TimeZone);
+            setPostalCode(data.PostalCode);
+            setLat(data.Lat||0);
+            setLng(data.Lng||0);
+            setSent(true);
 
         }catch(error){
             alert(error);
