@@ -1,16 +1,14 @@
-import type { Dispatch,SetStateAction } from "react";
-
 type props={
-    country:Dispatch<SetStateAction<string>>;
-    city:Dispatch<SetStateAction<string>>;
-    timeZone:Dispatch<SetStateAction<string>>;
-    postalCode:Dispatch<SetStateAction<string>>;
-    lat:Dispatch<SetStateAction<number>>;
-    lng:Dispatch<SetStateAction<number>>;
+    country:string|undefined;
+    city:string|undefined;
+    timeZone:string|undefined;
+    postalCode:string|undefined;
+    lat:number;
+    lng:number;
 }
 
 function InfoComponent({country,city,timeZone,postalCode,lat,lng}:props){
-    const arr=[
+    const arr:any[]=[
         {
             label:"Country",
             data:country
@@ -33,8 +31,15 @@ function InfoComponent({country,city,timeZone,postalCode,lat,lng}:props){
     ]
     
     return(
-        <div>
-            
+        <div className="flex ring-redish-700 text-redish-500 self-center flex-wrap justify-center">
+            {arr.map((e,i)=>{
+                return (
+                <div key={i} className="flex flex-col items-center p-1 lg:p-2 border-2">
+                    <h1 className="text-sm lg:text-md">{e.label}</h1>
+                    <h2 className="text-md lg:text-xl text-redish-100">{e.data}</h2>
+                </div>
+                )
+            })}
         </div>
     )
 

@@ -1,14 +1,14 @@
-import React from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import iconUrl from 'leaflet/dist/images/marker-icon.png';
 import iconShadowUrl from 'leaflet/dist/images/marker-shadow.png';
+import MoveMapComponent from './MoveMapComponent';
 
 
 type Props={
-    lat:number;
-    lng:number;
+  lat:number;
+  lng:number;
 }
 
 const DefaultIcon = L.icon({
@@ -19,18 +19,15 @@ const DefaultIcon = L.icon({
 
 L.Marker.prototype.options.icon = DefaultIcon;
 
-function MapComponent({lat,lng}:Props){
-    return (
-    <MapContainer center={[lat,lng]} zoom={13} style={{ height:'100%', width: '100%' }}>
+function MapComponent({lat,lng}:Props){  
+  return (
+    <MapContainer center={[lat,lng]} zoom={13} style={{ height:'400px', width: '100%' }}>
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution="&copy; OpenStreetMap contributors"
       />
-      <Marker position={[lat,lng]}>
-        <Popup>
-          A sample marker popup.
-        </Popup>
-      </Marker>
+      <MoveMapComponent lat={lat} lng={lng} ></MoveMapComponent>
+      <Marker position={[lat,lng]}></Marker>
     </MapContainer>
   );
 }

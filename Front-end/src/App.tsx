@@ -1,8 +1,9 @@
 import { useState } from "react"
-import InputComponent from "./InputComponent"
 import 'leaflet/dist/leaflet.css';
 
 import MapComponent from "./MapComponent";
+import InputComponent from "./InputComponent"
+import InfoComponent from "./InfoComponent";
 
 function App() {
   const [country,setCountry]=useState<string|undefined>('');
@@ -14,13 +15,13 @@ function App() {
   const [sent,setSent]=useState<boolean>(false);
 
   return (
-    <main className="h-screen grid grid-row-[1fr 1fr] items-center justify-center">
+    <main className="h-screen flex flex-col items-center justify-evenly ">
       <InputComponent setCountry={setCountry} setCity={setCity} setTimeZone={setTimeZone} setPostalCode={setPostalCode} setLat={setLat} setLng={setLng} setSent={setSent}/>
       {sent&&
-        <>
-          
+        <div className="flex flex-col relative w-full justify-evenly">
+          <InfoComponent country={country} city={city} timeZone={timeZone} postalCode={postalCode} lat={lat} lng={lng}/>
           <MapComponent lat={lat} lng={lng}/>
-        </>
+        </div>
       }
     </main>
   )
