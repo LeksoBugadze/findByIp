@@ -20,7 +20,7 @@ import io.github.cdimascio.dotenv.Dotenv;
 
 
 @RestController
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "https://findbyip.aleksandrebugadze.com")
 public class FindLocByIpController {
 
     @Value("${api.key}")
