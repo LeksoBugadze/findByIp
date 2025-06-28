@@ -1,4 +1,5 @@
 FROM eclipse-temurin:21-jdk-alpine
+RUN apk update && apk add maven
 WORKDIR /app
 COPY . .
 RUN mvn clean install -DskipTests
