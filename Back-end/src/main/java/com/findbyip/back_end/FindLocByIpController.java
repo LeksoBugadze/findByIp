@@ -3,6 +3,7 @@ package com.findbyip.back_end;
 import java.util.Map;
 import java.util.HashMap;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,14 +23,20 @@ import io.github.cdimascio.dotenv.Dotenv;
 @CrossOrigin(origins = "http://localhost:5173")
 public class FindLocByIpController {
 
-    private final String apiKey;
-    private final String baseURL;
+    @Value("${api.key}")
+    private String apiKey;
+    
+    @Value("${base.url}")
+    private String baseURL;
 
-    public FindLocByIpController(){
-        Dotenv dotenv=Dotenv.load();
-        this.baseURL=dotenv.get("BASE_URL");
-        this.apiKey=dotenv.get("API_KEY");
-    }
+    /////////////////////////////////
+    //FOR LOCAL TESTING
+    /////////////////////////////////
+    // public FindLocByIpController(){
+    //     Dotenv dotenv=Dotenv.load();
+    //     this.baseURL=dotenv.get("BASE_URL");
+    //     this.apiKey=dotenv.get("API_KEY");
+    // }
 
     public String getParam(String input){
         String result="domain";
