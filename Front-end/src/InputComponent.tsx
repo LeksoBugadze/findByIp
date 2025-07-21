@@ -14,7 +14,7 @@ type Props = {
 };
 
 function InputComponent({setErrorMessage,setError,setCountry,setCity,setTimeZone,setPostalCode,setLat,setLng,setSent}:Props){
-    const url:string='https://findbyip.onrender.com';
+    const url:string='https://findbyip.fly.dev';
 
     const [inputValue,setInputValue]=useState('');
     const [loading,setLoading]=useState(false);
