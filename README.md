@@ -21,7 +21,7 @@ This is an app that draws map using IP address, domain or email
 ### Clone the repository
 
 ```bash
-git clone https://github.com/LeksoBugadze/findByIp.git
+git clone --recursive https://github.com/LeksoBugadze/findByIp.git
 ```
 
 ### In back-end directory go into src/main/java/FindLOcByIpController.java and comment out line 27,30 and uncomment code under "FOR LOCAL TESTING"
